@@ -31,7 +31,7 @@ function canvasSetup(){
     renderingContext = canvas.getContext("2d");
     document.body.appendChild(canvas);
     var text = document.createElement("p");
-    text.innerHTML = "Art by Revangale, Alucard and tebruno99 on <a href = 'https://opengameart.org'>Open Game Art</a>";
+    text.innerHTML = "Art by mediocrea";
     document.body.appendChild(text);
 }
 function Sprite(image, x, y, width, height){
@@ -114,13 +114,12 @@ function update(){
     if(delta < (Date.now()-20)){
         var speed = 20;
         if(jumped && jump_count > 0){
-            velocity = -15;
+            velocity = -20;
             jump_count--;
             jumped = false;
-            console.log(jump_count);
         }
         sprite_y+=velocity;
-        if(sprite_y>=340) {
+        if(sprite_y >= 340) {
             velocity = 0;
             jump_count = max_jump;
         }else{
