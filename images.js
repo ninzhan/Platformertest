@@ -12,6 +12,8 @@ var delta_sprite = Date.now();
 var delta = Date.now();
 var velocity = 0;
 var jumped = false;
+var max_jump = 10;
+var jump_count = 2;
 
 function windowSetup(){
     width = window.innerWidth;
@@ -111,16 +113,16 @@ function initSprites(img){
 function update(){
     if(delta < (Date.now()-20)){
         var speed = 20;
-        if(jumped){
-            velocity = -20;
+        if(jumped && jump_count > 0){
+            velocity = -15;
+            jump_count--;
             jumped = false;
-        }
-        for(var x in velocity){
-            console.log(x);
+            console.log(jump_count);
         }
         sprite_y+=velocity;
         if(sprite_y>=340) {
             velocity = 0;
+            jump_count = max_jump;
         }else{
             velocity += 2;
         }
@@ -137,6 +139,13 @@ function update(){
             sprite_x = 380;
         }
         sprite_y +=velocity;
+        if(sprite_y> 340){
+            sprite_y = 340;
+        }
+        if(sprite_y<0){
+            sprite_y = 0;
+            velocity = 0;
+        }
         delta = Date.now();
     }
     if(delta_sprite < (Date.now()-80)){
@@ -146,7 +155,7 @@ function update(){
 
 }
 function render(){
-    console.log(velocity);
+
     renderingContext.clearRect(0, 0, 380, 430);
     headbang[frames%6].draw(renderingContext, sprite_x, sprite_y, "default", "default");
 
