@@ -12,7 +12,7 @@ var delta_sprite = Date.now();
 var delta = Date.now();
 var velocity = 0;
 var jumped = false;
-var max_jump = 10;
+var max_jump = 2;
 var jump_count = 2;
 
 function windowSetup(){
